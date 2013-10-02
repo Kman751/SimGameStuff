@@ -1,0 +1,27 @@
+Stocks algorithm
+
+Description: This is just a bit of a template for what we want to code later. We'll have to code it depending on the framework and language we want to use.
+
+Functionality: The companies will need to be dynamic, so we should have
+
+  Three word banks
+    - The first with names like "Canadian, American, Jones, Smith, Goldman"
+    - The second with secondary names like "Bank, Steel, Coal, Insurance, Technology"
+    - The third with company times like "Limited, Incorporated" or things such as "& Engineering, & Design, & Mining"
+  
+  Every company should be set up as a class with variables including (but not limited to):
+    -The name
+    -The starting price
+    -The risk (basically if it's more likely to do a massive jump in a direction, or just move around slowly and steadily)
+    -Potential for events. These should be limited by name (If it contains the word "steel" then the company shouldn't go bust because of an agricultural downturn)
+    -Storage of value history (to generate a curve) as well as a generated history for those companies that already exist when the player starts)
+  
+  A system of deciding when a stock is to go bust and how a new company will be generated (So that names aren't repeated)
+  
+  (Optional, I don't think I want this) Safeguards to make sure there is no unintentional market crash. If we allow crashes, there should be a system in place to delay the re-opening of the stock market (to simulate a recession or true market crash)
+  
+  Algorithm concept 1:
+  
+  Two systems: 1. Trend and 2. Distribution
+  Create a weekly up or down trend with a daily varying magnitude. Then we have a normal distribution of probability around that trend given the daily trend which will get us a stock value for the day.
+  We can use the risk value of the company to scale the calue generated from the trend and normal distribution.
