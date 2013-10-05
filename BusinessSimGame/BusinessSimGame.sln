@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessSimGame", "BusinessSimGame\BusinessSimGame\BusinessSimGame.csproj", "{311E8004-B8DC-44C8-A457-789161977A7F}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BusinessSimGameContent", "BusinessSimGame\BusinessSimGameContent\BusinessSimGameContent.contentproj", "{A5F83F3B-B4BC-4EFE-AE99-C8CE17E6DEC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{311E8004-B8DC-44C8-A457-789161977A7F}.Debug|x86.ActiveCfg = Debug|x86
+		{311E8004-B8DC-44C8-A457-789161977A7F}.Debug|x86.Build.0 = Debug|x86
+		{311E8004-B8DC-44C8-A457-789161977A7F}.Release|x86.ActiveCfg = Release|x86
+		{311E8004-B8DC-44C8-A457-789161977A7F}.Release|x86.Build.0 = Release|x86
+		{A5F83F3B-B4BC-4EFE-AE99-C8CE17E6DEC0}.Debug|x86.ActiveCfg = Debug|x86
+		{A5F83F3B-B4BC-4EFE-AE99-C8CE17E6DEC0}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
