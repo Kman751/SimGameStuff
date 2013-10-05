@@ -19,6 +19,23 @@ namespace BusinessSimGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Button Images and their Vectors
+        private Texture2D startButton;
+        private Vector2 startButtonPosition;
+
+        // Mouse and Key handlers
+        private MouseState mouseState;
+        private MouseState prevMouseState;
+
+        // Game State Enumerator
+        enum GameState
+        {
+            StartMenu,
+            MainDisplay
+        }
+        GameState gameState = GameState.StartMenu;
+        private bool isLoading = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,6 +51,10 @@ namespace BusinessSimGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+
+            mouseState = Mouse.GetState();
+            prevMouseState = mouseState;
 
             base.Initialize();
         }
@@ -48,6 +69,8 @@ namespace BusinessSimGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            if (gameState == GameState.StartMenu)
+                LoadMenu();
         }
 
         /// <summary>
@@ -72,6 +95,22 @@ namespace BusinessSimGame
 
             // TODO: Add your update logic here
 
+            // wait for a mouse click
+            mouseState = Mouse.GetState();
+
+            if (prevMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released)
+            {
+                MouseClicked(mouseState.X, mouseState.Y);
+            }
+
+            prevMouseState = mouseState;
+
+            if (gameState == GameState.MainDisplay && isLoading)
+            {
+                // Load the Main Display Resources here i.e. LoadMainScreen() or LoadGame()
+                isLoading = false;
+            }
+
             base.Update(gameTime);
         }
 
@@ -81,11 +120,53 @@ namespace BusinessSimGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            switch (gameState)
+            {
+                case GameState.StartMenu:
+                    spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                    break;
+
+                case GameState.MainDisplay:
+                    break;
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        void LoadMenu()
+        {
+            startButton = Content.Load<Texture2D>(@"startgame");
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - (startButton.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (startButton.Height / 2));
+        }
+
+        void MouseClicked(int x, int y)
+        {
+            //creates a rectangle of 10x10 around the place where the mouse was clicked
+            Rectangle mouseClickRect = new Rectangle(x, y, 10, 10);
+
+            switch (gameState)
+            {
+                //check the startmenu
+                case GameState.StartMenu:
+                    Rectangle startButtonRect = new Rectangle((int)startButtonPosition.X, (int)startButtonPosition.Y, startButton.Width, startButton.Height);
+
+                    if (mouseClickRect.Intersects(startButtonRect)) //player clicked start button
+                    {
+                        gameState = GameState.MainDisplay;
+                        isLoading = true;
+                    }
+                    break;
+
+                case GameState.MainDisplay:
+                    break;
+            }
         }
     }
 }
