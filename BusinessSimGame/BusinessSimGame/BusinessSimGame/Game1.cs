@@ -19,9 +19,13 @@ namespace BusinessSimGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        // Button Images and their Vectors
+        // Main Menu Button Images and their Vectors
         private Texture2D startButton;
         private Vector2 startButtonPosition;
+
+        //Main Display Button Images and their Vectors
+        private Texture2D advanceDayButton;
+        private Vector2 andvanceDayButtonPosition;
 
         // Mouse and Key handlers
         private MouseState mouseState;
@@ -108,6 +112,7 @@ namespace BusinessSimGame
             if (gameState == GameState.MainDisplay && isLoading)
             {
                 // Load the Main Display Resources here i.e. LoadMainScreen() or LoadGame()
+                LoadMainDisplay();
                 isLoading = false;
             }
 
@@ -142,14 +147,20 @@ namespace BusinessSimGame
 
         void LoadMenu()
         {
-            startButton = Content.Load<Texture2D>(@"startgame");
+            startButton = Content.Load<Texture2D>(@"StartGameButton");
             startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - (startButton.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (startButton.Height / 2));
+        }
+
+        void LoadMainDisplay()
+        {
+            
         }
 
         void MouseClicked(int x, int y)
         {
             //creates a rectangle of 10x10 around the place where the mouse was clicked
-            Rectangle mouseClickRect = new Rectangle(x, y, 10, 10);
+            Rectangle mouseClickRect = new Rectangle(x, y, 4, 4);
+            
 
             switch (gameState)
             {
